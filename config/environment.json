@@ -1,0 +1,19 @@
+{
+  "devLocal": {
+    "port":           3500,
+    "version":        "/v0",
+    "mongoDB":"agoo"
+  },
+
+  "devServer": {
+    "port":           3500,
+    "version":        "/v0",
+    "mongoDB":"agoo"
+  },
+
+  "production": {
+    "port":           3000,
+    "version":        "/v1",
+    "mongoDB":"agoo"
+  }
+}
