@@ -1,0 +1,20 @@
+{
+  "name": "agoo",
+  "version": "0.1.0",
+  "description": "Agoo API is designed to provide a back-end flexible, robust and secure. Built with Node.js and Express.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "make test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://AlejoJamC@github.com/AgooDev/Agoo.git"
+  },
+  "author": "@AgooDev",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/AgooDev/Agoo/issues"
+  },
+  "homepage": "https://github.com/AgooDev/Agoo#readme"
+}
