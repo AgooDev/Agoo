@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/AgooDev/Agoo/issues"
   },
-  "homepage": "https://github.com/AgooDev/Agoo#readme"
+  "homepage": "https://github.com/AgooDev/Agoo#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.5.0",
+    "mysql": "^2.11.1",
+    "sequelize": "^3.23.3"
+  }
 }
