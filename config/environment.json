@@ -1,19 +1,25 @@
 {
-  "devLocal": {
-    "port":           3500,
-    "version":        "/v0",
-    "mongoDB":"agoo"
+  "devLocal":
+  {
+    "port"      :   3011,
+    "version"   :   "/v0",
+    "mongoDB"   :   "agoo",
+    "MongoUri"  :   "mongodb://localhost:27017/"
   },
 
-  "devServer": {
-    "port":           3500,
-    "version":        "/v0",
-    "mongoDB":"agoo"
+  "devServer":
+  {
+    "port"      :   3500,
+    "version"   :   "/v0",
+    "mongoDB"   :   "agoo",
+    "MongoUri"  :   "mongodb://localhost:27017/"
   },
 
-  "production": {
-    "port":           3000,
-    "version":        "/v1",
-    "mongoDB":"agoo"
+  "production"  :
+  {
+    "port"      :   3000,
+    "version"   :   "/v1",
+    "mongoDB"   :   "agoo",
+    "MongoUri"  :   "mongodb://localhost:27017/"
   }
 }
