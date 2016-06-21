@@ -27,6 +27,7 @@ try {
 }
 catch (ex) { }
 
+
 var logger = new (winston.Logger)({
     transports: [
         new (winston.transports.File)({
