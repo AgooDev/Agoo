@@ -48,6 +48,11 @@ app.set('view engine', 'jade');
 // Favicon path.
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
+// Logger.
+// TODO: Arreglar el error entre wiston y morgan
+//app.use(morgan('combined', { 'stream': logger.stream }));
+app.use(morgan('dev'));
+
 
 // Path to our public directory
 app.use(express.static(__dirname + '/public'));
