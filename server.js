@@ -63,6 +63,12 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
 // Import static files.
 app.use(express.static(path.join(__dirname, 'public')));
 
