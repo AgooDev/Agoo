@@ -63,6 +63,9 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Import static files.
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Local variables.
 // Current year.
 app.locals.currentYear = moment().year();
