@@ -10,7 +10,10 @@
 var Logger = require('../config/logger');
 var logger = Logger.logger;
 var DataModel = require('../models/clients');
-// ENDPOINT: /clients METHOD: GETexports.getClientByIdClient = function(req, res){
+var Client = DataModel.Client;
+// TODO: implementar mas verbos y funciones para administrar los clientes
+// ENDPOINT: /clients METHOD: GET
+exports.getClientByIdClient = function(req, res){
     // Use the 'Client' model to find the client by his id [idUser]
     Client.find({ idUser : req.user._id },function(err, client){
         // Check for errors and show message
