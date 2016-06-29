@@ -105,6 +105,39 @@ passport.use('client-basic', new BasicStrategy(
     }
 ));
 
+passport.use(new BearerStrategy(
+    function(accessToken, callback) {
+        Token.findOne({ value: accessToken }, function (err, token) {
+            if (err) {
+                logger.error(err);
+                return callback(err);
+            }
+
+            // No token found
+            if (!token) {
+                return callback(null, false);
+            }
+
+            User.findOne({ _id: token.idUser }, function (err, user) {
+                if (err){
+                    logger.error(err);
+                    return callback(err);
+                }
+
+                // No user found
+                if (!user) {
+                    return callback(null, false);
+                }
+
+                // Simple example with no scope
+                // TODO: verificar el alcance de la respuesta de la BearerStrategy
+                callback(null, user, { scope: '*' });
+            });
+        });
+    }
+));
+
 exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], { session : false });
 exports.isLoginAuthenticated = passport.authenticate(['Login-Basic', 'bearer'], { session : false });
 exports.isClientAuthenticated = passport.authenticate('client-basic', { session : false });
+exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });
