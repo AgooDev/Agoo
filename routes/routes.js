@@ -29,7 +29,39 @@ function SetupRouter (router){
         var date = now.format("DD-MM-YYYY HH:mm");
         logger.info('%s %s %s', req.method, req.url, date);
         next();
-    });    /**
+    });
+
+    /**
+     *  Declare all routes
+     */
+    var authRoutes = require('./auth');
+    var clientRoutes = require('./clients');
+    var oauth2Routes = require('./oauth2');
+    var permissionRoutes = require('./permissions');
+   // TODO: error en roles Cannot overwrite `Roles` model once compiled.
+    //var rolRoutes = require('./roles');
+    var userRoutes = require('./users');
+
+    /**
+     *  Document:  CLIENTS.JS
+     *  Define routes where they are stored endpoints
+     */
+    /**
+     *  Document:  OAUTH2.JS
+     *  Create endpoint handlers for oauth2 authorize
+     */
+    /**
+     *  Document:  PERMISSIONS.JS
+     *  Define routes where they are stored endpoints
+     */
+    /**
+     *  Document:  ROLES.JS
+     *  Define routes where they are stored endpoints
+     */
+    /**
+     *  Document:  USERS.JS
+     *  Define routes where they are stored endpoints
+     */
      * ====================================================================
      */
 }
