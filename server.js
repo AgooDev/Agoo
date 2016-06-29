@@ -41,6 +41,10 @@ var app = express();
 // Port.
 app.set('port', port);
 
+// Config views and template engine.
+// Use `.hbs` for extensions and find partials in `views/partials`.
+app.set('view engine', 'jade');
+
 // Favicon path.
 app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
