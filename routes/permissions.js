@@ -36,3 +36,27 @@ exports.getPermissionById = function(req, res){
         res.json(permi);
     });
 };
+
+// ENDPOINT: /permissions METHOD: POST
+exports.postPermission = function (req, res) {
+    // Create a new instance of the Permission model
+    var permi = new Permission();
+
+    // Set the Permission properties that came from the POST data
+    permi.name = req.body.name;
+    permi.module = req.body.module;
+    permi.creationDate = Date.now();
+    permi.lastEditionDate = Date.now();
+    permi.enabled = true;
+
+    permi.save(function(err){
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+        // success
+        res.json({ message: 'Permission created successfully!', data: permi });
+    });
+};
+};
