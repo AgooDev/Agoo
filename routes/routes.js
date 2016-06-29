@@ -9,8 +9,7 @@
 /**
  * Module dependencies
  */
-var Logger = require('../config/logger');
-var logger = Logger.logger;
+var logger = require('../config/logger').logger;
 var moment = require('moment');
 
 /**

@@ -7,11 +7,10 @@
  */
 
 // Load required packages
-var Logger = require('../config/logger');
-var logger = Logger.logger;
-var DataModel = require('../models/clients');
-var Client = DataModel.Client;
+var logger = require('../config/logger').logger;
+var Client = require('../models/clients').Client;
 // TODO: implementar mas verbos y funciones para administrar los clientes
+
 // ENDPOINT: /clients METHOD: GET
 exports.getClientByIdClient = function(req, res){
     // Use the 'Client' model to find the client by his id [idUser]
