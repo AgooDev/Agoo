@@ -53,6 +53,16 @@ app.use(favicon(__dirname + '/public/img/favicon.ico'));
 //app.use(morgan('combined', { 'stream': logger.stream }));
 app.use(morgan('dev'));
 
+// Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
+app.use(methodOverride());
+
+// Set Header 'X-Prowered-By'
+logger.info('Agoo.com.co');
+app.use(function (req, res, next) {
+    res.set('X-Powered-By', 'Agoo.com.co < info@agoo.com.co >');
+    next();
+});
+
 
 // Path to our public directory
 app.use(express.static(__dirname + '/public'));
