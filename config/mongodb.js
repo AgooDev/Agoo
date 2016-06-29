@@ -35,4 +35,4 @@ function SetupMongoDB (DBName, HostUri){
 }
 
 // Export the function that initialize all routes
-module.exports.setupMongoDB = setupMongoDB;
+module.exports.SetupMongoDB = SetupMongoDB;
