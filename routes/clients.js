@@ -25,3 +25,27 @@ exports.getClientByIdClient = function(req, res){
         res.json(client);
     });
 };
+
+// ENDPOINT: /clients METHOD: POST
+exports.postClient = function (req, res) {
+    // Create a new instance of the Client model
+    var client = new Client();
+
+    // Set the Client properties that came from the POST data
+    client.name = req.body.name;
+    client.id = req.body.id;
+    client.secret = req.body.secret;
+    client.idUser = req.user._id;
+
+    client.save(function(err){
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+        // success
+        res.json({ message: 'Client created successfully!', data: client });
+    });
+};
+
+};
