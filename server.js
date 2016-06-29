@@ -72,6 +72,16 @@ app.use(bodyParser.urlencoded({
 // Import static files.
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Session.
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: '3f1l 4 73g 0t d33n yll43r u s1ht d43r n4c u f1'
+}));
+
+// Use the passport package in our application
+app.use(passport.initialize());
+
 // Local variables.
 // Current year.
 app.locals.currentYear = moment().year();
