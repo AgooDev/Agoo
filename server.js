@@ -28,6 +28,22 @@ var express             = require('express'),
     config              = require('./config/environment.json')[environment],
     port                = config.port;
 
+logger.info('Enviroment: ' + environment);
+
+// Express app instance
+var app = express();
+
+// Load configuration, package and environment to the new express app.
+// Port.
+app.set('port', port);
+
+// Favicon path.
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
+
+
+// Path to our public directory
+app.use(express.static(__dirname + '/public'));
+
 //ROUTER
 //Create our Express router
 var router  = express.Router();
