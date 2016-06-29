@@ -52,4 +52,59 @@ passport.use(new BasicStrategy(
     }
 ));
 
+passport.use('Login-Basic',new BasicStrategy(
+    function(email, password, callback) {
+        User.findOne({ email : email }, function (err, user) {
+            if (err) {
+                logger.error(err);
+                return callback(err);
+            }
+
+            // No user found with that email
+            if (!user) {
+                return callback(null, false);
+            }
+
+            // Make sure the password is correct
+            user.verifyPassword(password, function(err, isMatch) {
+                if (err) {
+                    logger.error(err);
+                    return callback(err);
+                }
+
+                // Password did not match
+                if (!isMatch) {
+
+                    return callback(null, false);
+
+                }
+
+                // Success
+                return callback(null, user);
+            });
+        });
+    }
+));
+
+passport.use('client-basic', new BasicStrategy(
+    function(email, password, callback) {
+        Client.findOne({ id: email }, function (err, client) {
+            if (err) {
+                logger.error(err);
+                return callback(err);
+            }
+
+            // No client found with that id or bad password
+            if (!client || client.secret !== password) {
+                return callback(null, false);
+            }
+
+            // Success
+            return callback(null, client);
+        });
+    }
+));
+
 exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], { session : false });
+exports.isLoginAuthenticated = passport.authenticate(['Login-Basic', 'bearer'], { session : false });
+exports.isClientAuthenticated = passport.authenticate('client-basic', { session : false });
