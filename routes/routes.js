@@ -45,18 +45,76 @@ function SetupRouter (router){
      *  Document:  CLIENTS.JS
      *  Define routes where they are stored endpoints
      */
+        // ENDPOINT: /clients
+    router.route('/clients')
+        .get(authRoutes.isAuthenticated, clientRoutes.getClientByIdClient)
+        .post(authRoutes.isAuthenticated, clientRoutes.postClient);
+
+    // ENDPOINT: /clients/:id
+    router.route('/clients/:id')
+        .delete(authRoutes.isAuthenticated, clientRoutes.deleteClient);
+    /**
+     * ====================================================================
+     */
+
+
     /**
      *  Document:  OAUTH2.JS
      *  Create endpoint handlers for oauth2 authorize
      */
+        // ENDPOINT: /oauth2/authorize
+    router.route('/oauth2/authorize')
+        .get(authRoutes.isAuthenticated, oauth2Routes.authorization)
+        .post(authRoutes.isAuthenticated, oauth2Routes.decision);
+
+    // ENDPOINT: /oauth2/token
+    router.route('/oauth2/token')
+        .post(authRoutes.isClientAuthenticated, oauth2Routes.token);
+    /**
+     * ====================================================================
+     */
+
+
     /**
      *  Document:  PERMISSIONS.JS
      *  Define routes where they are stored endpoints
      */
+        // ENDPOINT: /permissions
+    router.route('/permissions')
+        .get(authRoutes.isAuthenticated, permissionRoutes.getPermissions)
+        .post(authRoutes.isAuthenticated, permissionRoutes.postPermission);
+
+    // ENDPOINT: /permissions/:id
+    router.route('/permissions/:id')
+        .get(authRoutes.isAuthenticated, permissionRoutes.getPermissionById)
+        .put(authRoutes.isAuthenticated, permissionRoutes.putPermission)
+        .patch(authRoutes.isAuthenticated, permissionRoutes.patchPermission)
+        .delete(authRoutes.isAuthenticated, permissionRoutes.deletePermission);
+    /**
+     * ====================================================================
+     */
+
+
     /**
      *  Document:  ROLES.JS
      *  Define routes where they are stored endpoints
      */
+        // ENDPOINT: /roles
+    //router.route('/roles')
+    //    .get(authRoutes.isAuthenticated, rolRoutes.getRoles)
+    //    .post(authRoutes.isAuthenticated, rolRoutes.postRol);
+
+    // ENDPOINT: /roles/:id
+    //router.route('/roles/:id')
+    //    .get(authRoutes.isAuthenticated, rolRoutes.getRolById)
+    //    .put(authRoutes.isAuthenticated, rolRoutes.putRol)
+    //    .patch(authRoutes.isAuthenticated, rolRoutes.patchRol)
+    //    .delete(authRoutes.isAuthenticated, rolRoutes.deleteRol);
+    /**
+     * ====================================================================
+     */
+
+
     /**
      *  Document:  USERS.JS
      *  Define routes where they are stored endpoints

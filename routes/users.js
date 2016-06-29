@@ -10,3 +10,17 @@
 var logger = require('../config/logger').logger;
 var User = require('../models/users').User;
 var UserReset = require('../models/userReset').UserReset;
+
+// ENDPOINT: /users/:id METHOD: DELETE
+exports.deleteUser = function(req, res){
+    User.findByIdAndRemove(req.params.id, function(err){
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+            return;
+        }
+        // success
+        res.json({ message: 'User deleted successfully!' });
+    });
+};
