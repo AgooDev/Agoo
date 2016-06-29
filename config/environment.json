@@ -3,7 +3,7 @@
   {
     "port"      :   3011,
     "version"   :   "/v0",
-    "mongoDB"   :   "agoo",
+    "MongoDB"   :   "agoo",
     "MongoUri"  :   "mongodb://localhost:27017/"
   },
 
@@ -11,7 +11,7 @@
   {
     "port"      :   3500,
     "version"   :   "/v0",
-    "mongoDB"   :   "agoo",
+    "MongoDB"   :   "agoo",
     "MongoUri"  :   "mongodb://localhost:27017/"
   },
 
@@ -19,7 +19,7 @@
   {
     "port"      :   3000,
     "version"   :   "/v1",
-    "mongoDB"   :   "agoo",
+    "MongoDB"   :   "agoo",
     "MongoUri"  :   "mongodb://localhost:27017/"
   }
 }
