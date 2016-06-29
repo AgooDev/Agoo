@@ -59,4 +59,43 @@ exports.postPermission = function (req, res) {
         res.json({ message: 'Permission created successfully!', data: permi });
     });
 };
+
+// ENDPOINT: /permissions/:id METHOD: PUT
+exports.putPermission = function(req, res){
+    Permission.findById(req.params.id, function (err, permi) {
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+
+        // Set the Permission properties that came from the PUT data
+        permi.name = req.body.name;
+        permi.module = req.body.module;
+        permi.creationDate = req.body.creationDate;
+        permi.lastEditionDate = Date.now();
+        permi.enabled = req.body.enabled;
+
+        permi.save(function(err){
+            // Check for errors and show message
+            if(err){
+                logger.error(err);
+                res.send(err);
+            }
+            // success
+            res.json({message: 'Permission updated successfully', data: permi });
+        });
+    });
+};
+// ENDPOINT: /permissions/:id METHOD: DELETE
+exports.deletePermission = function(req, res){
+    Permission.findByIdAndRemove(req.params.id, function(err){
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+        // success
+        res.json({ message: 'Permission deleted successfully!' });
+    });
 };
