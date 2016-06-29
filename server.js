@@ -27,3 +27,19 @@ var express             = require('express'),
     environment         = 'devLocal',
     config              = require('./config/environment.json')[environment],
     port                = config.port;
+
+//ROUTER
+//Create our Express router
+var router  = express.Router();
+
+// Setup all routes on express router
+routes.SetupRouter(router);
+
+// Register all our routes with a prefix: /api or /v1
+// This poject is created to be hosted in a subdomain dedicated to authentication and authorization
+// Example of an URL with the prefix: auth.happyauth.com/v0
+app.use(config.version, router);
+
+// Start the server
+app.listen(port);
+logger.info('API running on http://localhost:' + port + config.version + '/');
