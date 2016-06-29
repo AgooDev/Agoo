@@ -63,6 +63,10 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Local variables.
+// Current year.
+app.locals.currentYear = moment().year();
+app.locals.currentEnvironment = environment;
 
 // Path to our public directory
 app.use(express.static(__dirname + '/public'));
