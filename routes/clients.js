@@ -48,4 +48,15 @@ exports.postClient = function (req, res) {
     });
 };
 
+// ENDPOINT: /clients/:id METHOD: DELETE
+exports.deleteClient = function(req, res){
+    Client.findByIdAndRemove(req.params.id, function(err){
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+        // success
+        res.json({ message: 'Client deleted successfully!' });
+    });
 };
