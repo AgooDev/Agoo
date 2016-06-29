@@ -19,3 +19,37 @@ var ClientDataModel = require('../models/clients');
 var Client = ClientDataModel.Client;
 var TokenDataModel = require('../models/tokens');
 var Token = TokenDataModel.Token;
+
+passport.use(new BasicStrategy(
+    function(email, password, callback) {
+        User.findOne({ email : email }, function (err, user) {
+            if (err) {
+                logger.error(err);
+                return callback(err);
+            }
+
+            // No user found with that email
+            if (!user) {
+                return callback(null, false);
+            }
+
+            // Make sure the password is correct
+            user.verifyPassword(password, function(err, isMatch) {
+                if (err) {
+                    logger.error(err);
+                    return callback(err);
+                }
+
+                // Password did not match
+                if (!isMatch) {
+                    return callback(null, false);
+                }
+
+                // Success
+                return callback(null, user);
+            });
+        });
+    }
+));
+
+exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], { session : false });
