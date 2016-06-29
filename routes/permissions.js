@@ -87,6 +87,37 @@ exports.putPermission = function(req, res){
         });
     });
 };
+
+// ENDPOINT: /permissions/:id METHOD: PATCH
+exports.patchPermission = function(req, res){
+    Permission.findById(req.params.id, function (err, permi) {
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+
+        permi.enabled = req.body.enabled;
+        permi.lastEditionDate = Date.now();
+
+        permi.save(function(err){
+            // Check for errors and show message
+            if(err){
+                logger.error(err);
+                res.send(err);
+            }
+            var message = '';
+            if(permi.enabled === true){
+                message = 'Permission enabled successfully';
+            }else{
+                message = 'Permission disbled successfully';
+            }
+            // success
+            res.json({message: message, data: permi });
+        });
+    });
+};
+
 // ENDPOINT: /permissions/:id METHOD: DELETE
 exports.deletePermission = function(req, res){
     Permission.findByIdAndRemove(req.params.id, function(err){
