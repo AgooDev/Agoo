@@ -9,3 +9,32 @@
 // Load required packages
 var logger = require('../config/logger').logger;
 var Roles = require('../models/roles').Roles;
+
+// ENDPOINT: /roles METHOD: GET
+exports.getRoles = function(req, res){
+    // Use the 'Roles' model to find all Roles
+    Roles.find(function (err, roles) {
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+        // success
+        res.json(roles);
+    });
+};
+
+// ENDPOINT: /roles/:id METHOD: GET
+exports.getRolById = function(req, res){
+    // Use the 'Roles' model to find single Roles
+    Roles.findById(req.params.id, function (err, rol) {
+        // Check for errors and show message
+        if(err){
+            logger.error(err);
+            res.send(err);
+        }
+        // success
+        res.json(rol);
+    });
+};
+};
