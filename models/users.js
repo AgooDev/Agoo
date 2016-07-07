@@ -36,6 +36,11 @@ var UserSchema = new Schema({
 		idModule: Schema.Types.ObjectId,
 		module: String
 	}],
+	// temporalmente en español
+	referente: {
+		current : Schema.Types.ObjectId,
+		original : Schema.Types.ObjectId
+	},
 	creationDate: Date,
 	enabled: Boolean
 },{ versionKey: false });
