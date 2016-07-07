@@ -119,6 +119,20 @@ function SetupRouter (router){
      *  Document:  USERS.JS
      *  Define routes where they are stored endpoints
      */
+    // ENDPOINT: /users
+    router.route('/users')
+        .get(authRoutes.isAuthenticated, userRoutes.getUsers)
+        .post(userRoutes.postUser);
+        //.post(authRoutes.isAuthenticated, userRoutes.postUser);
+
+    // ENDPOINT: /users/:id
+    // ENDPOINT: /users/count
+    // ENDPOINT: /users/count?initialDate=yyyy-mm-dd&endDate=yyyy-mm-dd
+    router.route('/users/:id')
+        .get(authRoutes.isAuthenticated, userRoutes.getUserById)
+        .put(authRoutes.isAuthenticated, userRoutes.putUser)
+        .patch(authRoutes.isAuthenticated, userRoutes.patchUser)
+        .delete(authRoutes.isAuthenticated, userRoutes.deleteUser);
      * ====================================================================
      */
 }
