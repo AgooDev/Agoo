@@ -44,9 +44,6 @@ exports.postPermission = function (req, res) {
 
     // Set the Permission properties that came from the POST data
     permi.name = req.body.name;
-    permi.module = req.body.module;
-    permi.creationDate = Date.now();
-    permi.lastEditionDate = Date.now();
     permi.enabled = true;
 
     permi.save(function(err){
@@ -71,9 +68,6 @@ exports.putPermission = function(req, res){
 
         // Set the Permission properties that came from the PUT data
         permi.name = req.body.name;
-        permi.module = req.body.module;
-        permi.creationDate = req.body.creationDate;
-        permi.lastEditionDate = Date.now();
         permi.enabled = req.body.enabled;
 
         permi.save(function(err){

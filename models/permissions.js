@@ -12,7 +12,6 @@ var Schema = mongoose.Schema;
 // Define our Permission schema
 var PermissionSchema = new Schema({
     name: String,
-    module: String,
     enabled: Boolean
 },{
     timestamps  : true
