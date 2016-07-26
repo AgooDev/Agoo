@@ -12,12 +12,18 @@ var logger = Logger.logger;
 var bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
+var Referring = require('./users').User;
+var Permission = require('./permissions').Permission;
+var Role = require('./roles').Role;
+
 // TODO: Finalizar el modelo de los usuarios
 // TODO: Implementar validacion por correo electronico para los registros por Sign UP
 // Define basic User schema
 var UserSchema = new Schema({
-	name: String,
+	firstName: String,
 	lastName: String,
+	identification: String,
 	email: {
 		type: String,
 		required: true,
@@ -27,20 +33,11 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	},
-	rol: {
-		idRol: Schema.Types.ObjectId,
-		rol: String
-	},
-	permissions:[{
-		name: String,
-		idModule: Schema.Types.ObjectId,
-		module: String
-	}],
+	address: String,
+	rol: [Role.schema],
+	permissions:[Permission.schema],
 	// temporalmente en español
-	referente: {
-		current : Schema.Types.ObjectId,
-		original : Schema.Types.ObjectId
-	},
+	referring: [Referring.schema],
 	enabled: Boolean
 },{
 	timestamps  : true
