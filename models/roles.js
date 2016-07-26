@@ -9,8 +9,8 @@
 // Load required packages
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// Define our Roles schema
-var RolesSchema = new Schema({
+// Define our Role schema
+var RoleSchema = new Schema({
     name: String,
     enabled: Boolean
 },{
@@ -18,4 +18,4 @@ var RolesSchema = new Schema({
 });
 
 // Export the Mongoose model
-module.exports.Roles = mongoose.model('Roles', RolesSchema);
+module.exports.Role = mongoose.model('Role', RoleSchema);
