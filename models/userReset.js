@@ -9,10 +9,11 @@
 // Load required package
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var User = require('./users').User;
 
 var UserResetSchema = new Schema({
     name: String,
-    idUser: Schema.Types.ObjectId,
+    user: [User.schema],
     email: String,
     code: String
 },{
