@@ -133,6 +133,20 @@ function SetupRouter (router){
         .put(authRoutes.isAuthenticated, userRoutes.putUser)
         .patch(authRoutes.isAuthenticated, userRoutes.patchUser)
         .delete(authRoutes.isAuthenticated, userRoutes.deleteUser);
+
+    // ENDPOINT: /login
+    router.route('/login')
+        .get(authRoutes.isLoginAuthenticated, userRoutes.getLogin);
+
+    // ENDPOINT: /password/reset
+    router.route('/password/reset')
+        .post(authRoutes.isAuthenticated, userRoutes.postPasswordReset);
+
+    // ENDPOINT: /password/reset/:code
+    router.route('/password/reset/:code')
+        .patch(authRoutes.isAuthenticated, userRoutes.PatchPasswordReset);
+
+    /**
      * ====================================================================
      */
 }
