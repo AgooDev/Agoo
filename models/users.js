@@ -16,6 +16,10 @@ var Schema = mongoose.Schema;
 var Referring = require('./users').User;
 var Permission = require('./permissions').Permission;
 var Role = require('./roles').Role;
+var Country = require('./countries').Country;
+var State = require('./states').State;
+var City = require('./cities').City;
+var Currency = require('./currencies').Currency;
 
 // TODO: Finalizar el modelo de los usuarios
 // TODO: Implementar validacion por correo electronico para los registros por Sign UP
@@ -33,11 +37,16 @@ var UserSchema = new Schema({
 		type: String,
 		required: true
 	},
+	country: [Country.schema],
+	state: [State.schema],
+	city: [City.schema],
 	address: String,
-	rol: [Role.schema],
-	permissions:[Permission.schema],
-	// temporalmente en español
+	telephone: String,
+	isColombian: Boolean,
+	currency: [Currency.schema],
 	referring: [Referring.schema],
+	role: [Role.schema],
+	permissions:[Permission.schema],
 	enabled: Boolean
 },{
 	timestamps  : true
