@@ -8,12 +8,12 @@
 
 // Load required packages
 var logger = require('../config/logger').logger;
-var Roles = require('../models/roles').Roles;
+var Role = require('../models/roles').Role;
 
 // ENDPOINT: /roles METHOD: GET
 exports.getRoles = function(req, res){
     // Use the 'Roles' model to find all Roles
-    Roles.find(function (err, roles) {
+    Role.find(function (err, roles) {
         // Check for errors and show message
         if(err){
             logger.error(err);
@@ -27,7 +27,7 @@ exports.getRoles = function(req, res){
 // ENDPOINT: /roles/:id METHOD: GET
 exports.getRolById = function(req, res){
     // Use the 'Roles' model to find single Roles
-    Roles.findById(req.params.id, function (err, rol) {
+    Role.findById(req.params.id, function (err, rol) {
         // Check for errors and show message
         if(err){
             logger.error(err);
@@ -41,12 +41,10 @@ exports.getRolById = function(req, res){
 // ENDPOINT: /roles METHOD: POST
 exports.postRol = function (req, res) {
     // Create a new instance of the Roles model
-    var rol = new Roles();
+    var rol = new Role();
 
     // Set the Roles properties that came from the POST data
     rol.name = req.body.name;
-    rol.creationDate = Date.now();
-    rol.lastEditionDate = Date.now();
     rol.enabled = true;
 
     rol.save(function(err){
@@ -62,7 +60,7 @@ exports.postRol = function (req, res) {
 
 // ENDPOINT: /roles/:id METHOD: PUT
 exports.putRol = function(req, res){
-    Roles.findById(req.params.id, function (err, rol) {
+    Role.findById(req.params.id, function (err, rol) {
         // Check for errors and show message
         if(err){
             logger.error(err);
@@ -71,8 +69,6 @@ exports.putRol = function(req, res){
 
         // Set the Roles properties that came from the PUT data
         rol.name = req.body.name;
-        rol.creationDate = req.body.creationDate;
-        rol.lastEditionDate = Date.now();
         rol.enabled = req.body.enabled;
 
         rol.save(function(err){
@@ -89,7 +85,7 @@ exports.putRol = function(req, res){
 
 // ENDPOINT: /roles/:id METHOD: PATCH
 exports.patchRol = function(req, res){
-    Roles.findById(req.params.id, function (err, rol) {
+    Role.findById(req.params.id, function (err, rol) {
         // Check for errors and show message
         if(err){
             logger.error(err);
@@ -119,7 +115,7 @@ exports.patchRol = function(req, res){
 
 // ENDPOINT: /roles/:id METHOD: DELETE
 exports.deleteRol = function(req, res){
-    Roles.findByIdAndRemove(req.params.id, function(err){
+    Role.findByIdAndRemove(req.params.id, function(err){
         // Check for errors and show message
         if(err){
             logger.error(err);
