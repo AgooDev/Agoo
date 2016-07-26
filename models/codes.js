@@ -27,7 +27,9 @@ var CodeSchema   = new mongoose.Schema({
         type: String,
         required: true
     }
-},{ versionKey: false });
+},{
+    timestamps  : true
+});
 
 // Export the Mongoose model
 module.exports.Code = mongoose.model('Code', CodeSchema);

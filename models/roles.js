@@ -12,10 +12,10 @@ var Schema = mongoose.Schema;
 // Define our Roles schema
 var RolesSchema = new Schema({
     name: String,
-    creationDate: Date,
-    lastEditionDate: Date,
     enabled: Boolean
-},{ versionKey: false });
+},{
+    timestamps  : true
+});
 
 // Export the Mongoose model
 module.exports.Roles = mongoose.model('Roles', RolesSchema);

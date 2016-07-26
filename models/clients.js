@@ -29,7 +29,9 @@ var ClientSchema = new Schema({
         type : Schema.Types.ObjectId,
         required: true
     }
-},{ versionKey: false });
+},{
+    timestamps  : true
+});
 
 // Export the Mongoose model
 module.exports.Client = mongoose.model('Client', ClientSchema);

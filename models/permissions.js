@@ -12,12 +12,11 @@ var Schema = mongoose.Schema;
 // Define our Permission schema
 var PermissionSchema = new Schema({
     name: String,
-    idModule: Schema.Types.ObjectId,
     module: String,
-    creationDate: Date,
-    lastEditionDate: Date,
     enabled: Boolean
-},{ versionKey: false });
+},{
+    timestamps  : true
+});
 
 // Export the Mongoose model
 module.exports.Permission = mongoose.model('Permission', PermissionSchema);

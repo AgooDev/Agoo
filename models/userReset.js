@@ -15,7 +15,9 @@ var UserResetSchema = new Schema({
     idUser: Schema.Types.ObjectId,
     email: String,
     code: String
-},{ versionKey: false });
+},{
+    timestamps  : true
+});
 
 // Export the Mongoose model
 module.exports.UserReset = mongoose.model('UserReset', UserResetSchema);

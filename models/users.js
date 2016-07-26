@@ -41,9 +41,10 @@ var UserSchema = new Schema({
 		current : Schema.Types.ObjectId,
 		original : Schema.Types.ObjectId
 	},
-	creationDate: Date,
 	enabled: Boolean
-},{ versionKey: false });
+},{
+	timestamps  : true
+});
 
 // Execute before each user.save() call
 UserSchema.pre('save', function (callback) {

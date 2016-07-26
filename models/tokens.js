@@ -23,7 +23,9 @@ var TokenSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-},{ versionKey: false });
+},{
+    timestamps  : true
+});
 
 // Export the Mongoose model
 module.exports.Token = mongoose.model('Token', TokenSchema);
