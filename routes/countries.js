@@ -45,6 +45,7 @@ exports.postCountry = function (req, res) {
 
     // Set the Countries properties that came from the POST data
     country.name = req.body.name;
+    country.sortname = req.body.sortname;
     country.enabled = true;
 
     country.save(function(err){
@@ -69,6 +70,7 @@ exports.putCountry = function(req, res){
 
         // Set the Countries properties that came from the PUT data
         rol.name = req.body.name;
+        rol.sortname = req.body.sortname;
         rol.enabled = req.body.enabled;
 
         rol.save(function(err){
