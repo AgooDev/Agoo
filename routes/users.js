@@ -168,23 +168,24 @@ exports.PatchPasswordReset = function (req, res) {
     });
 };
 
-
-
 // ENDPOINT: /users METHOD: POST
 exports.postUser = function (req, res) {
     // Create a new instance of the User model
     var user = new User();
 
     // Set the User properties that came from the POST data
-    user.name = req.body.name;
+    user.firstName = req.body.firstName;
     user.lastName = req.body.lastName;
+    user.identification = req.body.identification;
     user.email = req.body.email;
     user.password = req.body.password;
-    // TODO: rectificar insercion de array de objetos
-    //user.rol = req.body.rol;
-    //user.permissions = req.body.permissions;
-    user.creationDate = Date.now();
+    user.address = req.body.address;
+    user.telephone = req.body.telephone;
+    user.isColombian = req.body.isColombian;
     user.enabled = true;
+
+    // Embed docs
+    // TODO:// Add the related documents
 
     user.save(function(err){
         // Check for errors and show message
@@ -209,15 +210,17 @@ exports.putUser = function(req, res){
         }
 
         // Set the User properties that came from the PUT data
-        user.name = req.body.name;
+        user.firstName = req.body.firstName;
         user.lastName = req.body.lastName;
+        user.identification = req.body.identification;
         user.email = req.body.email;
         user.password = req.body.password;
-        user.creationDate = req.body.creationDate;
+        user.address = req.body.address;
+        user.telephone = req.body.telephone;
+        user.isColombian = req.body.isColombian;
         user.enabled = req.body.enabled;
-        // TODO: rectificar insercion de array de objetos
-        //user.rol = req.body.rol;
-        //user.permissions = req.body.permissions;
+        // Embed docs
+        // TODO:// Add the related documents
         user.save(function(err){
             // Check for errors and show message
             if(err){
