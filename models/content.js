@@ -11,6 +11,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Course = require('./courses').Course;
 var Type = require('./contentType').ContentType;
+var ItemVideo = require('./contentItems').ItemVideoAnswer;
+var ItemImage = require('./contentItems').ItemImageAnswer;
+var Itemtext = require('./contentItems').ItemTextAnswer;
 
 // Define our Course schema
 var CourseSchema = new Schema({
@@ -18,6 +21,9 @@ var CourseSchema = new Schema({
     description: String,
     course: [Course.schema],
     type: [Type.schema],
+    video:[ItemVideo.schema],
+    image:[ItemImage.schema],
+    text:[Itemtext.schema],
     order: Number,
     price: Number,
     enabled: Boolean
