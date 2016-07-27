@@ -27,14 +27,14 @@ exports.getCountries = function(req, res){
 // ENDPOINT: /countries/:id METHOD: GET
 exports.getCountryById = function(req, res){
     // Use the 'Countries' model to find single Countries
-    Country.findById(req.params.id, function (err, rol) {
+    Country.findById(req.params.id, function (err, country) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
         // success
-        res.json(rol);
+        res.json(country);
     });
 };
 
@@ -46,7 +46,6 @@ exports.postCountry = function (req, res) {
     // Set the Countries properties that came from the POST data
     country.name = req.body.name;
     country.sortname = req.body.sortname;
-    country.enabled = true;
 
     country.save(function(err){
         // Check for errors and show message
@@ -61,7 +60,7 @@ exports.postCountry = function (req, res) {
 
 // ENDPOINT: /countries/:id METHOD: PUT
 exports.putCountry = function(req, res){
-    Country.findById(req.params.id, function (err, rol) {
+    Country.findById(req.params.id, function (err, country) {
         // Check for errors and show message
         if(err){
             logger.error(err);
@@ -69,48 +68,47 @@ exports.putCountry = function(req, res){
         }
 
         // Set the Countries properties that came from the PUT data
-        rol.name = req.body.name;
-        rol.sortname = req.body.sortname;
-        rol.enabled = req.body.enabled;
+        country.name = req.body.name;
+        country.sortname = req.body.sortname;
+        country.enabled = req.body.enabled;
 
-        rol.save(function(err){
+        country.save(function(err){
             // Check for errors and show message
             if(err){
                 logger.error(err);
                 res.send(err);
             }
             // success
-            res.json({message: 'Country updated successfully', data: rol });
+            res.json({message: 'Country updated successfully', data: country });
         });
     });
 };
 
 // ENDPOINT: /countries/:id METHOD: PATCH
 exports.patchCountry = function(req, res){
-    Country.findById(req.params.id, function (err, rol) {
+    Country.findById(req.params.id, function (err, country) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
 
-        rol.enabled = req.body.enabled;
-        rol.lastEditionDate = Date.now();
+        country.enabled = req.body.enabled;
 
-        rol.save(function(err){
+        country.save(function(err){
             // Check for errors and show message
             if(err){
                 logger.error(err);
                 res.send(err);
             }
             var message = '';
-            if(rol.enabled === true){
+            if(country.enabled === true){
                 message = 'Country enabled successfully';
             }else{
                 message = 'Country disbled successfully';
             }
             // success
-            res.json({message: message, data: rol });
+            res.json({message: message, data: country });
         });
     });
 };
