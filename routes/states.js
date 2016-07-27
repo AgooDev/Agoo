@@ -9,6 +9,7 @@
 // Load required packages
 var logger = require('../config/logger').logger;
 var State = require('../models/states').State;
+var Country = require('../models/countries').Country;
 
 // ENDPOINT: /states METHOD: GET
 exports.getStates = function(req, res){
@@ -27,14 +28,14 @@ exports.getStates = function(req, res){
 // ENDPOINT: /states/:id METHOD: GET
 exports.getStateById = function(req, res){
     // Use the 'States' model to find single States
-    State.findById(req.params.id, function (err, rol) {
+    State.findById(req.params.id, function (err, state) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
         // success
-        res.json(rol);
+        res.json(state);
     });
 };
 
@@ -45,8 +46,15 @@ exports.postState = function (req, res) {
 
     // Set the States properties that came from the POST data
     state.name = req.body.name;
-    // TODO: add country reference
-    state.enabled = true;
+
+    // embed country document
+    for (var i = 0; i < req.body.country.length; ++i) {
+        // Assign Item value from body properties
+        var country = new Country();
+        country._id = req.body.country[i]._id;
+        country.name = req.body.country[i].name;
+        state.county.push(country);
+    }
 
     state.save(function(err){
         // Check for errors and show message
@@ -61,56 +69,77 @@ exports.postState = function (req, res) {
 
 // ENDPOINT: /states/:id METHOD: PUT
 exports.putState = function(req, res){
-    State.findById(req.params.id, function (err, rol) {
+    State.findById(req.params.id, function (err, state) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
 
-        // Set the States properties that came from the PUT data
-        rol.name = req.body.name;
-        // TODO: add country reference
-        rol.enabled = req.body.enabled;
+        // Delete all the items of the questionnaire
+        state.update({
+            $set: {
+                country: []
+            }
+        }, function(err, affected) {
+            // Check for errors and show message
+            if (err) {
+                logger.error(err);
+                res.send(err);
+            }
+            // Deleted all items
+            logger.info('Delete country before insert modified values');
+        });
 
-        rol.save(function(err){
+        // Set the States properties that came from the PUT data
+        state.name = req.body.name;
+        // embed country document
+        for (var i = 0; i < req.body.country.length; ++i) {
+            // Assign Item value from body properties
+            var country = new Country();
+            country._id = req.body.country[i]._id;
+            country.name = req.body.country[i].name;
+            state.county.push(country);
+        }
+        state.enabled = req.body.enabled;
+
+        state.save(function(err){
             // Check for errors and show message
             if(err){
                 logger.error(err);
                 res.send(err);
             }
             // success
-            res.json({message: 'State updated successfully', data: rol });
+            res.json({message: 'State updated successfully', data: state });
         });
     });
 };
 
 // ENDPOINT: /states/:id METHOD: PATCH
 exports.patchState = function(req, res){
-    State.findById(req.params.id, function (err, rol) {
+    State.findById(req.params.id, function (err, state) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
 
-        rol.enabled = req.body.enabled;
-        rol.lastEditionDate = Date.now();
+        state.enabled = req.body.enabled;
 
-        rol.save(function(err){
+        state.save(function(err){
             // Check for errors and show message
             if(err){
                 logger.error(err);
                 res.send(err);
             }
             var message = '';
-            if(rol.enabled === true){
+            if(state.enabled === true){
                 message = 'State enabled successfully';
             }else{
                 message = 'State disbled successfully';
             }
             // success
-            res.json({message: message, data: rol });
+            res.json({message: message, data: state });
         });
     });
 };
