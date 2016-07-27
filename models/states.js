@@ -14,7 +14,7 @@ var Country = require('./countries').Country;
 // Define our State schema
 var StateSchema = new Schema({
     name: String,
-    County: [Country.schema],
+    county: [Country.schema],
     enabled: {
         type: Boolean,
         default: true
