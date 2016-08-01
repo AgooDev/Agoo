@@ -34,12 +34,39 @@ function SetupRouter (router){
      *  Declare all routes
      */
     var authRoutes = require('./auth');
+    var cityRoutes = require('./cities');
     var clientRoutes = require('./clients');
+    var contentTypeRoutes = require('./contentTypes');
+    var countryRoutes = require('./countries');
+    var courseLevelRoutes = require('./courseLevel');
+    var courseRoutes = require('./courses');
+    var currencyRoutes = require('./currencies');
     var oauth2Routes = require('./oauth2');
     var permissionRoutes = require('./permissions');
-   // TODO: error en roles Cannot overwrite `Roles` model once compiled.
-    //var rolRoutes = require('./roles');
+    var programRoutes = require('./programs');
+    var roleRoutes = require('./roles');
+    var stateRoutes = require('./states');
     var userRoutes = require('./users');
+
+    /**
+     *  Document:  CITIES.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /cities
+    router.route('/cities')
+        .get(authRoutes.isAuthenticated, cityRoutes.getCities)
+        .post(authRoutes.isAuthenticated, cityRoutes.postCity);
+
+    // ENDPOINT: /cities/:id
+    router.route('/cities/:id')
+        .get(authRoutes.isAuthenticated, cityRoutes.getCityById)
+        .put(authRoutes.isAuthenticated, cityRoutes.putCity)
+        .patch(authRoutes.isAuthenticated, cityRoutes.patchCity)
+        .delete(authRoutes.isAuthenticated, cityRoutes.deleteCity);
+    /**
+     * ====================================================================
+     */
+
 
     /**
      *  Document:  CLIENTS.JS
@@ -53,6 +80,106 @@ function SetupRouter (router){
     // ENDPOINT: /clients/:id
     router.route('/clients/:id')
         .delete(authRoutes.isAuthenticated, clientRoutes.deleteClient);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
+     *  Document:  CONTENTTYPES.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /content/types
+    router.route('/content/types')
+        .get(authRoutes.isAuthenticated, contentTypeRoutes.getContentTypes)
+        .post(authRoutes.isAuthenticated, contentTypeRoutes.postContentType);
+
+    // ENDPOINT: /content/types/:id
+    router.route('/content/types/:id')
+        .get(authRoutes.isAuthenticated, contentTypeRoutes.getContentTypeById)
+        .put(authRoutes.isAuthenticated, contentTypeRoutes.putContentType)
+        .patch(authRoutes.isAuthenticated, contentTypeRoutes.patchContentType)
+        .delete(authRoutes.isAuthenticated, contentTypeRoutes.deleteContentType);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
+     *  Document:  COUNTRIES.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /countries
+    router.route('/countries')
+        .get(authRoutes.isAuthenticated, countryRoutes.getCountries)
+        .post(authRoutes.isAuthenticated, countryRoutes.postCountry);
+
+    // ENDPOINT: /countries/:id
+    router.route('/countries/:id')
+        .get(authRoutes.isAuthenticated, countryRoutes.getCountryById)
+        .put(authRoutes.isAuthenticated, countryRoutes.putCountry)
+        .patch(authRoutes.isAuthenticated, countryRoutes.patchCountry)
+        .delete(authRoutes.isAuthenticated, countryRoutes.deleteCountry);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
+     *  Document:  COURSELEVELS.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /course/levels
+    router.route('/course/levels')
+        .get(authRoutes.isAuthenticated, courseLevelRoutes.getCourseLevels)
+        .post(authRoutes.isAuthenticated, courseLevelRoutes.postCourseLevel);
+
+    // ENDPOINT: /course/levels/:id
+    router.route('/course/levels/:id')
+        .get(authRoutes.isAuthenticated, courseLevelRoutes.getCourseLevelById)
+        .put(authRoutes.isAuthenticated, courseLevelRoutes.putCourseLevel)
+        .patch(authRoutes.isAuthenticated, courseLevelRoutes.patchCourseLevel)
+        .delete(authRoutes.isAuthenticated, courseLevelRoutes.deleteCourseLevel);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
+     *  Document:  COURSES.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /courses
+    router.route('/courses')
+        .get(authRoutes.isAuthenticated, courseRoutes.getCourses)
+        .post(authRoutes.isAuthenticated, courseRoutes.postCourse);
+
+    // ENDPOINT: /courses/:id
+    router.route('/courses/:id')
+        .get(authRoutes.isAuthenticated, courseRoutes.getCourseById)
+        .put(authRoutes.isAuthenticated, courseRoutes.putCourse)
+        .patch(authRoutes.isAuthenticated, courseRoutes.patchCourse)
+        .delete(authRoutes.isAuthenticated, courseRoutes.deleteCourse);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
+     *  Document:  CURRENCIES.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /currencies
+    router.route('/currencies')
+        .get(authRoutes.isAuthenticated, currencyRoutes.getCurrencies)
+        .post(authRoutes.isAuthenticated, currencyRoutes.postCurrency);
+
+    // ENDPOINT: /currencies/:id
+    router.route('/currencies/:id')
+        .get(authRoutes.isAuthenticated, currencyRoutes.getCurrencyById)
+        .put(authRoutes.isAuthenticated, currencyRoutes.putCurrency)
+        .patch(authRoutes.isAuthenticated, currencyRoutes.patchCurrency)
+        .delete(authRoutes.isAuthenticated, currencyRoutes.deleteCurrency);
     /**
      * ====================================================================
      */
@@ -96,20 +223,60 @@ function SetupRouter (router){
 
 
     /**
+     *  Document:  PROGRAMS.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /programs
+    router.route('/programs')
+        .get(authRoutes.isAuthenticated, programRoutes.getPrograms)
+        .post(authRoutes.isAuthenticated, programRoutes.postProgram);
+
+    // ENDPOINT: /programs/:id
+    router.route('/programs/:id')
+        .get(authRoutes.isAuthenticated, programRoutes.getProgramById)
+        .put(authRoutes.isAuthenticated, programRoutes.putProgram)
+        .patch(authRoutes.isAuthenticated, programRoutes.patchProgram)
+        .delete(authRoutes.isAuthenticated, programRoutes.deleteProgram);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
      *  Document:  ROLES.JS
      *  Define routes where they are stored endpoints
      */
         // ENDPOINT: /roles
-    //router.route('/roles')
-    //    .get(authRoutes.isAuthenticated, rolRoutes.getRoles)
-    //    .post(authRoutes.isAuthenticated, rolRoutes.postRol);
+    router.route('/roles')
+       .get(authRoutes.isAuthenticated, roleRoutes.getRoles)
+       .post(authRoutes.isAuthenticated, roleRoutes.postRol);
 
     // ENDPOINT: /roles/:id
-    //router.route('/roles/:id')
-    //    .get(authRoutes.isAuthenticated, rolRoutes.getRolById)
-    //    .put(authRoutes.isAuthenticated, rolRoutes.putRol)
-    //    .patch(authRoutes.isAuthenticated, rolRoutes.patchRol)
-    //    .delete(authRoutes.isAuthenticated, rolRoutes.deleteRol);
+    router.route('/roles/:id')
+       .get(authRoutes.isAuthenticated, roleRoutes.getRolById)
+       .put(authRoutes.isAuthenticated, roleRoutes.putRol)
+       .patch(authRoutes.isAuthenticated, roleRoutes.patchRol)
+       .delete(authRoutes.isAuthenticated, roleRoutes.deleteRol);
+    /**
+     * ====================================================================
+     */
+
+
+    /**
+     *  Document:  STATES.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /states
+    router.route('/states')
+        .get(authRoutes.isAuthenticated, stateRoutes.getStates)
+        .post(authRoutes.isAuthenticated, stateRoutes.postState);
+
+    // ENDPOINT: /states/:id
+    router.route('/states/:id')
+        .get(authRoutes.isAuthenticated, stateRoutes.getStateById)
+        .put(authRoutes.isAuthenticated, stateRoutes.putState)
+        .patch(authRoutes.isAuthenticated, stateRoutes.patchState)
+        .delete(authRoutes.isAuthenticated, stateRoutes.deleteState);
     /**
      * ====================================================================
      */
