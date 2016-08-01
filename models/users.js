@@ -13,7 +13,6 @@ var bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Referring = require('./users').User;
 var Permission = require('./permissions').Permission;
 var Role = require('./roles').Role;
 var Country = require('./countries').Country;
@@ -44,7 +43,7 @@ var UserSchema = new Schema({
 	telephone: String,
 	isColombian: Boolean,
 	currency: [Currency.schema],
-	referring: [Referring.schema],
+	referring: String,
 	role: [Role.schema],
 	permissions:[Permission.schema],
 	enabled: Boolean
