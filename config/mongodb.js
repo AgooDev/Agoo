@@ -8,7 +8,7 @@
 /**
  * Module dependencies
  */
-var logger = require('logger').logger;
+var logger = require('./logger').logger;
 
 /**
  * setupMongoDB
@@ -17,7 +17,7 @@ var logger = require('logger').logger;
  *
  * @param {string}      DBName      Name of the database to connect
  */
-function SetupMongoDB (DBName, HostUri){
+function SetupMongoDB (HostUri, DBName){
     /**
      *  required packages
      */

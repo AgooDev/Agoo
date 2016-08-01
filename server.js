@@ -32,7 +32,7 @@ logger.info('Enviroment: ' + environment);
 
 // MongoDB connection
 var mongoDB = require('./config/mongodb');
-mongoDB.SetupMongoDB(config.MongoDB);
+mongoDB.SetupMongoDB(config.MongoUri, config.MongoDB);
 
 // Express app instance
 var app = express();
