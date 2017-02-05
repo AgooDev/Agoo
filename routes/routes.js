@@ -89,13 +89,13 @@ function SetupRouter (router){
      *  Document:  CONTENTTYPES.JS
      *  Define routes where they are stored endpoints
      */
-    // ENDPOINT: /content/types
-    router.route('/content/types')
+    // ENDPOINT: /types/content
+    router.route('/types/content')
         .get(authRoutes.isAuthenticated, contentTypeRoutes.getContentTypes)
         .post(authRoutes.isAuthenticated, contentTypeRoutes.postContentType);
 
-    // ENDPOINT: /content/types/:id
-    router.route('/content/types/:id')
+    // ENDPOINT: /types/content/:id
+    router.route('/types/content/:id')
         .get(authRoutes.isAuthenticated, contentTypeRoutes.getContentTypeById)
         .put(authRoutes.isAuthenticated, contentTypeRoutes.putContentType)
         .patch(authRoutes.isAuthenticated, contentTypeRoutes.patchContentType)
@@ -129,13 +129,13 @@ function SetupRouter (router){
      *  Document:  COURSELEVELS.JS
      *  Define routes where they are stored endpoints
      */
-    // ENDPOINT: /course/levels
-    router.route('/course/levels')
+    // ENDPOINT: /levels/courses
+    router.route('/levels/courses')
         .get(authRoutes.isAuthenticated, courseLevelRoutes.getCourseLevels)
         .post(authRoutes.isAuthenticated, courseLevelRoutes.postCourseLevel);
 
-    // ENDPOINT: /course/levels/:id
-    router.route('/course/levels/:id')
+    // ENDPOINT: /levels/courses/:id
+    router.route('/levels/courses/:id')
         .get(authRoutes.isAuthenticated, courseLevelRoutes.getCourseLevelById)
         .put(authRoutes.isAuthenticated, courseLevelRoutes.putCourseLevel)
         .patch(authRoutes.isAuthenticated, courseLevelRoutes.patchCourseLevel)

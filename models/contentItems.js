@@ -25,7 +25,7 @@ var ItemVideoAnswerSchema = new Schema({
 var ItemImageAnswerSchema = new Schema({
     title: String,
     image: String,
-    tianswertle: String
+    answer: String
 },{
     timestamps  : true
 });

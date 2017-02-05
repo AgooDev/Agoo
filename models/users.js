@@ -32,6 +32,7 @@ var UserSchema = new Schema({
 		required: true,
 		unique: true
 	},
+	emailVefified   : Boolean,
 	password: {
 		type: String,
 		required: true

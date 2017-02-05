@@ -10,7 +10,7 @@
 var logger = require('../config/logger').logger;
 var Level = require('../models/courseLevels').CourseLevel;
 
-// ENDPOINT: /course/levels METHOD: GET
+// ENDPOINT: /levels/courses METHOD: GET
 exports.getCourseLevels = function(req, res){
     // Use the 'Course Levels' model to find all Course Levels
     Level.find(function (err, levels) {
@@ -24,7 +24,7 @@ exports.getCourseLevels = function(req, res){
     });
 };
 
-// ENDPOINT: /course/levels/:id METHOD: GET
+// ENDPOINT: /levels/courses/:id METHOD: GET
 exports.getCourseLevelById = function(req, res){
     // Use the 'Course Levels' model to find single Course Levels
     Level.findById(req.params.id, function (err, level) {
@@ -38,7 +38,7 @@ exports.getCourseLevelById = function(req, res){
     });
 };
 
-// ENDPOINT: /course/levels METHOD: POST
+// ENDPOINT: /levels/courses METHOD: POST
 exports.postCourseLevel = function (req, res) {
     // Create a new instance of the Course Levels model
     var level = new Level();
@@ -58,7 +58,7 @@ exports.postCourseLevel = function (req, res) {
     });
 };
 
-// ENDPOINT: /course/levels/:id METHOD: PUT
+// ENDPOINT: /levels/courses/:id METHOD: PUT
 exports.putCourseLevel = function(req, res){
     Level.findById(req.params.id, function (err, level) {
         // Check for errors and show message
@@ -83,7 +83,7 @@ exports.putCourseLevel = function(req, res){
     });
 };
 
-// ENDPOINT: /course/levels/:id METHOD: PATCH
+// ENDPOINT: /levels/courses/:id METHOD: PATCH
 exports.patchCourseLevel = function(req, res){
     Level.findById(req.params.id, function (err, level) {
         // Check for errors and show message
@@ -112,7 +112,7 @@ exports.patchCourseLevel = function(req, res){
     });
 };
 
-// ENDPOINT: /course/levels/:id METHOD: DELETE
+// ENDPOINT: /levels/courses/:id METHOD: DELETE
 exports.deleteCourseLevel = function(req, res){
     Level.findByIdAndRemove(req.params.id, function(err){
         // Check for errors and show message

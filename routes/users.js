@@ -174,15 +174,12 @@ exports.postUser = function (req, res) {
     var user = new User();
 
     // Set the User properties that came from the POST data
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
-    user.identification = req.body.identification;
+    // TODO: enviar el correo de confirmacion de email despues de crearlo
+    // TODO: los codigos y los correos que no sea confirmados en 1 mes deben ser eliminados
     user.email = req.body.email;
     user.password = req.body.password;
-    user.address = req.body.address;
-    user.telephone = req.body.telephone;
-    user.isColombian = req.body.isColombian;
-    user.enabled = true;
+    user.emailVefified = false;
+    user.enabled = false;
 
     // Embed docs
     // TODO:// Add the related documents

@@ -10,7 +10,7 @@
 var logger = require('../config/logger').logger;
 var Type = require('../models/contentTypes').ContentType;
 
-// ENDPOINT: /content/types METHOD: GET
+// ENDPOINT: /types/content METHOD: GET
 exports.getContentTypes = function(req, res){
     // Use the 'ContentTypes' model to find all ContentTypes
     Type.find(function (err, types) {
@@ -24,7 +24,7 @@ exports.getContentTypes = function(req, res){
     });
 };
 
-// ENDPOINT: /content/types/:id METHOD: GET
+// ENDPOINT: /types/content/:id METHOD: GET
 exports.getContentTypeById = function(req, res){
     // Use the 'ContentTypes' model to find single ContentTypes
     Type.findById(req.params.id, function (err, type) {
@@ -38,7 +38,7 @@ exports.getContentTypeById = function(req, res){
     });
 };
 
-// ENDPOINT: /content/types METHOD: POST
+// ENDPOINT: /types/content METHOD: POST
 exports.postContentType = function (req, res) {
     // Create a new instance of the ContentTypes model
     var type = new Type();
@@ -58,7 +58,7 @@ exports.postContentType = function (req, res) {
     });
 };
 
-// ENDPOINT: /content/types/:id METHOD: PUT
+// ENDPOINT: /types/content/:id METHOD: PUT
 exports.putContentType = function(req, res){
     Type.findById(req.params.id, function (err, type) {
         // Check for errors and show message
@@ -83,7 +83,7 @@ exports.putContentType = function(req, res){
     });
 };
 
-// ENDPOINT: /content/types/:id METHOD: PATCH
+// ENDPOINT: /types/content/:id METHOD: PATCH
 exports.patchContentType = function(req, res){
     Type.findById(req.params.id, function (err, type) {
         // Check for errors and show message
@@ -112,7 +112,7 @@ exports.patchContentType = function(req, res){
     });
 };
 
-// ENDPOINT: /content/types/:id METHOD: DELETE
+// ENDPOINT: /types/content/:id METHOD: DELETE
 exports.deleteContentType = function(req, res){
     Type.findByIdAndRemove(req.params.id, function(err){
         // Check for errors and show message

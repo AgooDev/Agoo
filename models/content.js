@@ -15,8 +15,8 @@ var ItemVideo = require('./contentItems').ItemVideoAnswer;
 var ItemImage = require('./contentItems').ItemImageAnswer;
 var Itemtext = require('./contentItems').ItemTextAnswer;
 
-// Define our Course schema
-var CourseSchema = new Schema({
+// Define our Content schema
+var ContentSchema = new Schema({
     name: String,
     description: String,
     course: [Course.schema],
@@ -24,12 +24,10 @@ var CourseSchema = new Schema({
     video:[ItemVideo.schema],
     image:[ItemImage.schema],
     text:[Itemtext.schema],
-    order: Number,
-    price: Number,
     enabled: Boolean
 },{
     timestamps  : true
 });
 
 // Export the Mongoose model
-module.exports.Course = mongoose.model('Course', CourseSchema);
+module.exports.Content = mongoose.model('Content', ContentSchema);
