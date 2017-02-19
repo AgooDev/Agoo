@@ -5,21 +5,32 @@
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
-//
-// Module dependencies
-//
+
+/**
+ * Module dependencies
+ */
 var fs          = require('fs'),
     path        = require('path'),
     winston     = require('winston'),
 
-    filedebug   = path.join(__dirname,'..','logs','debug.log'),
-    filerror    = path.join(__dirname,'..','logs','error.log'),
-    fileinfo    = path.join(__dirname,'..','logs','info.log');
+    folderlogs    = path.join(__dirname,'..','logs'),
 
-// Activate winston emitter
+    filedebug   = path.join(folderlogs,'debug.log'),
+    filerror    = path.join(folderlogs,'error.log'),
+    fileinfo    = path.join(folderlogs,'info.log');
+
+/**
+ * Check if folder logs exists.
+ */
+
+if(!(fs.existsSync(folderlogs))){
+    fs.mkdirSync(folderlogs);
+}
+
+// Activate winston emitter.
 winston.emitErrs = true;
 
-// Remove the file, ignoring any errors
+// Remove the file, ignoring any errors.
 try {
     fs.unlinkSync(fileinfo);
     fs.unlinkSync(filedebug);
@@ -66,5 +77,9 @@ var logger = new (winston.Logger)({
     ],
     exitOnError: false
 });
+
+/**
+ * Export winston logger coniguration.
+ */
 
 module.exports.logger = logger;
