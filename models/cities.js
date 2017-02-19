@@ -6,12 +6,16 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var State = require('./states').State;
 
-// Define our State schema
+/**
+ * Define 'City' schema.
+ */
 var CitySchema = new Schema({
     name: String,
     state: [State.schema],
@@ -23,5 +27,7 @@ var CitySchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'City' model.
+ */
 module.exports.City = mongoose.model('City', CitySchema);

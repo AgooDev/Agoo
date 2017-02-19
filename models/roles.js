@@ -6,10 +6,15 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// Define our Role schema
+
+/**
+ * Define 'Role' schema.
+ */
 var RoleSchema = new Schema({
     name: String,
     enabled: Boolean
@@ -17,5 +22,7 @@ var RoleSchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Role' model.
+ */
 module.exports.Role = mongoose.model('Role', RoleSchema);

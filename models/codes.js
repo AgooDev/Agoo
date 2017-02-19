@@ -6,10 +6,15 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 // TODO: encriptar value que es el codigo de autorizacion
-// Define our token schema
+
+/**
+ * Define 'Code' schema.
+ */
 var CodeSchema   = new mongoose.Schema({
     value: {
         type: String,
@@ -31,5 +36,7 @@ var CodeSchema   = new mongoose.Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Code' model.
+ */
 module.exports.Code = mongoose.model('Code', CodeSchema);

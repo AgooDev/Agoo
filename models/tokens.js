@@ -6,10 +6,15 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 // TODO: encriptar el value del access token
-// Define our token schema
+
+/**
+ * Define 'Token' schema.
+ */
 var TokenSchema = new mongoose.Schema({
     value: {
         type : String,
@@ -27,5 +32,7 @@ var TokenSchema = new mongoose.Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Token' model.
+ */
 module.exports.Token = mongoose.model('Token', TokenSchema);

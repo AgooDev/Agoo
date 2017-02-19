@@ -6,11 +6,16 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 // TODO: encriptar el secret
-// Define our client schema
+
+/**
+ * Define 'Client' schema.
+ */
 var ClientSchema = new Schema({
     name : {
         type : String,
@@ -33,5 +38,7 @@ var ClientSchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Client' model.
+ */
 module.exports.Client = mongoose.model('Client', ClientSchema);

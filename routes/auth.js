@@ -6,13 +6,17 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var logger = require('../config/logger').logger;
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var BearerStrategy = require('passport-http-bearer').Strategy;
 
-// Load required models
+/**
+ *  Required models.
+ */
 var UserDataModel = require('../models/users');
 var User = UserDataModel.User;
 var ClientDataModel = require('../models/clients');

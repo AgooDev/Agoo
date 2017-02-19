@@ -6,10 +6,15 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// Define our Permission schema
+
+/**
+ * Define 'Permission' schema.
+ */
 var PermissionSchema = new Schema({
     name: String,
     enabled: Boolean
@@ -17,5 +22,7 @@ var PermissionSchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Permission' model.
+ */
 module.exports.Permission = mongoose.model('Permission', PermissionSchema);

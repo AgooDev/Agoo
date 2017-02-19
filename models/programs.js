@@ -6,10 +6,15 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// Define our Program schema
+
+/**
+ * Define 'Program' schema.
+ */
 var ProgramSchema = new Schema({
     name: String,
     description: String,
@@ -18,5 +23,7 @@ var ProgramSchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Program' model.
+ */
 module.exports.Program = mongoose.model('Program', ProgramSchema);

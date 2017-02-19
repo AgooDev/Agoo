@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 /**
- * Define 'Countries' schema.
+ * Define 'Country' schema.
  */
 var CountrySchema = new Schema({
     name: String,
@@ -26,5 +26,7 @@ var CountrySchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'Country' model.
+ */
 module.exports.Country = mongoose.model('Country', CountrySchema);
