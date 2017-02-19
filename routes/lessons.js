@@ -8,119 +8,119 @@
 
 // Load required packages
 var logger = require('../config/logger').logger;
-var Level = require('../models/courseLevels').CourseLevel;
+var Lesson = require('../models/lessons').Lesson;
 
-// ENDPOINT: /levels/courses METHOD: GET
-exports.getCourseLevels = function(req, res){
-    // Use the 'Course Levels' model to find all Course Levels
-    Level.find(function (err, levels) {
+// ENDPOINT: /lessons/courses METHOD: GET
+exports.getCourseLessons = function(req, res){
+    // Use the 'Course Lessons' model to find all Course Lessons
+    Lesson.find(function (err, lessons) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
         // success
-        res.json(levels);
+        res.json(lessons);
     });
 };
 
-// ENDPOINT: /levels/courses/:id METHOD: GET
-exports.getCourseLevelById = function(req, res){
-    // Use the 'Course Levels' model to find single Course Levels
-    Level.findById(req.params.id, function (err, level) {
+// ENDPOINT: /lessons/courses/:id METHOD: GET
+exports.getCourseLessonById = function(req, res){
+    // Use the 'Course Lessons' model to find single Course Lessons
+    Lesson.findById(req.params.id, function (err, lesson) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
         // success
-        res.json(level);
+        res.json(lesson);
     });
 };
 
-// ENDPOINT: /levels/courses METHOD: POST
-exports.postCourseLevel = function (req, res) {
-    // Create a new instance of the Course Levels model
-    var level = new Level();
+// ENDPOINT: /lessons/courses METHOD: POST
+exports.postCourseLesson = function (req, res) {
+    // Create a new instance of the Course Lessons model
+    var lesson = new Lesson();
 
-    // Set the Course Levels properties that came from the POST data
-    level.name = req.body.name;
-    level.enabled = req.body.enabled;
+    // Set the Course Lessons properties that came from the POST data
+    lesson.name = req.body.name;
+    lesson.enabled = req.body.enabled;
 
-    level.save(function(err){
+    lesson.save(function(err){
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
         // success
-        res.json({ message: 'Course Level created successfully!', data: level });
+        res.json({ message: 'Course Lesson created successfully!', data: lesson });
     });
 };
 
-// ENDPOINT: /levels/courses/:id METHOD: PUT
-exports.putCourseLevel = function(req, res){
-    Level.findById(req.params.id, function (err, level) {
+// ENDPOINT: /lessons/courses/:id METHOD: PUT
+exports.putCourseLesson = function(req, res){
+    Lesson.findById(req.params.id, function (err, lesson) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
 
-        // Set the Course Levels properties that came from the PUT data
-        level.name = req.body.name;
-        level.enabled = req.body.enabled;
+        // Set the Course Lessons properties that came from the PUT data
+        lesson.name = req.body.name;
+        lesson.enabled = req.body.enabled;
 
-        level.save(function(err){
+        lesson.save(function(err){
             // Check for errors and show message
             if(err){
                 logger.error(err);
                 res.send(err);
             }
             // success
-            res.json({message: 'Course Level updated successfully', data: level });
+            res.json({message: 'Course Lesson updated successfully', data: lesson });
         });
     });
 };
 
-// ENDPOINT: /levels/courses/:id METHOD: PATCH
-exports.patchCourseLevel = function(req, res){
-    Level.findById(req.params.id, function (err, level) {
+// ENDPOINT: /lessons/courses/:id METHOD: PATCH
+exports.patchCourseLesson = function(req, res){
+    Lesson.findById(req.params.id, function (err, lesson) {
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
 
-        level.enabled = req.body.enabled;
+        lesson.enabled = req.body.enabled;
 
-        level.save(function(err){
+        lesson.save(function(err){
             // Check for errors and show message
             if(err){
                 logger.error(err);
                 res.send(err);
             }
             var message = '';
-            if(level.enabled === true){
-                message = 'Course Level enabled successfully';
+            if(lesson.enabled === true){
+                message = 'Course Lesson enabled successfully';
             }else{
-                message = 'Course Level disbled successfully';
+                message = 'Course Lesson disbled successfully';
             }
             // success
-            res.json({message: message, data: level });
+            res.json({message: message, data: lesson });
         });
     });
 };
 
-// ENDPOINT: /levels/courses/:id METHOD: DELETE
-exports.deleteCourseLevel = function(req, res){
-    Level.findByIdAndRemove(req.params.id, function(err){
+// ENDPOINT: /lessons/courses/:id METHOD: DELETE
+exports.deleteCourseLesson = function(req, res){
+    Lesson.findByIdAndRemove(req.params.id, function(err){
         // Check for errors and show message
         if(err){
             logger.error(err);
             res.send(err);
         }
         // success
-        res.json({ message: 'Course Level deleted successfully!' });
+        res.json({ message: 'Course Lesson deleted successfully!' });
     });
 };

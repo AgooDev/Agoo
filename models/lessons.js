@@ -6,17 +6,23 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Define our Course Level schema
-var CourseLevelSchema = new Schema({
+/**
+ * Define 'Lesson' schema.
+ */
+var LessonSchema = new Schema({
     name: String,
     enabled: Boolean
 },{
     timestamps  : true
 });
 
-// Export the Mongoose model
-module.exports.CourseLevel = mongoose.model('CourseLevel', CourseLevelSchema);
+/**
+ * Expose 'Lesson' model.
+ */
+module.exports.Lesson = mongoose.model('Lesson', LessonSchema);

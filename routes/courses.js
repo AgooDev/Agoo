@@ -9,7 +9,7 @@
 // Load required packages
 var logger = require('../config/logger').logger;
 var Course = require('../models/courses').Course;
-var Level = require('../models/courseLevels').CourseLevel;
+var Level = require('../models/lessons').Lesson;
 var Program = require('../models/programs').Program;
 
 // ENDPOINT: /courses METHOD: GET

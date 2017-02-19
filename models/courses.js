@@ -10,7 +10,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Program = require('./programs').Program;
-var Level = require('./courseLevels').CourseLevel;
+var Level = require('./lessons').Lesson;
 
 // Define our Course schema
 var CourseSchema = new Schema({
