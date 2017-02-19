@@ -6,10 +6,15 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-// Define our Country schema
+
+/**
+ * Define 'Countries' schema.
+ */
 var CountrySchema = new Schema({
     name: String,
     sortname: String,
