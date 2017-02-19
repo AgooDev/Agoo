@@ -1,6 +1,9 @@
 # Webstorm IDE
 .idea/
 
+# Env files
+.env
+
 # Logs
 *.log
 npm-debug.log*
