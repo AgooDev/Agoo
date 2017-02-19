@@ -38,7 +38,7 @@ function SetupRouter (router){
     var clientRoutes = require('./clients');
     var contentTypeRoutes = require('./contentTypes');
     var countryRoutes = require('./countries');
-    var courseLevelRoutes = require('./courseLevel');
+    var lessonRoutes = require('./lessons');
     var courseRoutes = require('./courses');
     var currencyRoutes = require('./currencies');
     var oauth2Routes = require('./oauth2');
@@ -129,17 +129,17 @@ function SetupRouter (router){
      *  Document:  COURSELEVELS.JS
      *  Define routes where they are stored endpoints
      */
-    // ENDPOINT: /levels/courses
-    router.route('/levels/courses')
-        .get(authRoutes.isAuthenticated, courseLevelRoutes.getCourseLevels)
-        .post(authRoutes.isAuthenticated, courseLevelRoutes.postCourseLevel);
+    // ENDPOINT: /lessons
+    router.route('/lessons')
+        .get(authRoutes.isAuthenticated, lessonRoutes.getCourseLessons)
+        .post(authRoutes.isAuthenticated, lessonRoutes.postCourseLesson);
 
-    // ENDPOINT: /levels/courses/:id
-    router.route('/levels/courses/:id')
-        .get(authRoutes.isAuthenticated, courseLevelRoutes.getCourseLevelById)
-        .put(authRoutes.isAuthenticated, courseLevelRoutes.putCourseLevel)
-        .patch(authRoutes.isAuthenticated, courseLevelRoutes.patchCourseLevel)
-        .delete(authRoutes.isAuthenticated, courseLevelRoutes.deleteCourseLevel);
+    // ENDPOINT: /lessons/:id
+    router.route('/lessons/:id')
+        .get(authRoutes.isAuthenticated, lessonRoutes.getCourseLessonById)
+        .put(authRoutes.isAuthenticated, lessonRoutes.putCourseLesson)
+        .patch(authRoutes.isAuthenticated, lessonRoutes.patchCourseLesson)
+        .delete(authRoutes.isAuthenticated, lessonRoutes.deleteCourseLesson);
     /**
      * ====================================================================
      */
