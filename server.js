@@ -6,13 +6,20 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-//
-// Module dependencies
-//
+/**
+ * Environment variables.
+ */
+
+require('dotenv').config();
+
+/**
+ * Module dependencies.
+ */
 var express             = require('express'),
     bodyParser          = require('body-parser'),
+    errorhandler        = require('errorhandler'),
     favicon             = require('serve-favicon'),
-    jade                 = require('jade'),
+    jade                = require('jade'),
     methodOverride      = require('method-override'),
     moment              = require('moment'),
     path                = require('path'),
@@ -22,17 +29,14 @@ var express             = require('express'),
     logger              = require('./config/logger').logger,
     morgan              = require('morgan'),
 
-    routes              = require('./routes/routes'),
+    mongodb             = require('./config/mongodb'),
+    routes              = require('./routes/api'),
+    port                = process.env.API_PORT;
 
-    environment         = 'devLocal',
-    config              = require('./config/environment.json')[environment],
-    port                = config.port;
-
-logger.info('Enviroment: ' + environment);
+logger.info('Enviroment: ' + process.env.API_ENV);
 
 // MongoDB connection
-var mongoDB = require('./config/mongodb');
-mongoDB.SetupMongoDB(config.MongoUri, config.MongoDB);
+mongodb.SetupMongoDB(process.env.MONGODB_URI, process.env.MONGODB_NAME);
 
 // Express app instance
 var app = express();
@@ -85,10 +89,7 @@ app.use(passport.initialize());
 // Local variables.
 // Current year.
 app.locals.currentYear = moment().year();
-app.locals.currentEnvironment = environment;
-
-// Path to our public directory
-app.use(express.static(__dirname + '/public'));
+app.locals.currentEnvironment = process.env.API_ENV;
 
 //ROUTER
 //Create our Express router
@@ -100,8 +101,13 @@ routes.SetupRouter(router);
 // Register all our routes with a prefix: /api or /v1
 // This poject is created to be hosted in a subdomain dedicated to authentication and authorization
 // Example of an URL with the prefix: auth.happyauth.com/v0
-app.use(config.version, router);
+app.use('/' + process.env.API_VERSION, router);
+
+// Error handler available environment
+if (process.env.API_ENV === 'development'){
+    app.use(errorhandler());
+}
 
 // Start the server
 app.listen(port);
-logger.info('API running on http://localhost:' + port + config.version + '/');
+logger.info('API running on http://localhost:' + port + '/' + process.env.API_VERSION + '/');
