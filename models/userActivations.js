@@ -9,14 +9,12 @@
 /**
  * Module dependencies.
  */
-
 var mongoose = require('mongoose');
 
 /**
  * Define 'user Activation Code' schema.
  */
-
-var userActivationSchema = new mongoose.Schema({
+var UserActivationSchema = new mongoose.Schema({
     name:  {
         type        : String,
         required    : true
@@ -40,5 +38,4 @@ var userActivationSchema = new mongoose.Schema({
 /**
  * Expose 'UserActivation'.
  */
-
-module.exports.UserActivation = mongoose.model('UserActivation', userActivationSchema);
+module.exports.UserActivation = mongoose.model('UserActivation', UserActivationSchema);

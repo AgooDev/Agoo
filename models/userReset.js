@@ -6,11 +6,16 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required package
+/**
+ * Module dependencies.
+ */
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var User = require('./users').User;
 
+/**
+ * Define 'UserReset' schema.
+ */
 var UserResetSchema = new Schema({
     name: String,
     user: [User.schema],
@@ -20,5 +25,7 @@ var UserResetSchema = new Schema({
     timestamps  : true
 });
 
-// Export the Mongoose model
+/**
+ * Expose 'UserReset' model.
+ */
 module.exports.UserReset = mongoose.model('UserReset', UserResetSchema);

@@ -97,4 +97,4 @@ AdminSchema.methods.verifyPassword = function (password, callback) {
 /**
  * Expose 'Admin' model.
  */
-module.exports.User = mongoose.model('Admin', AdminSchema);
+module.exports.Admin = mongoose.model('Admin', AdminSchema);

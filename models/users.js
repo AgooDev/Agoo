@@ -6,13 +6,18 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var Logger = require('../config/logger');
 var logger = Logger.logger;
 var bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+/**
+ *  Required models.
+ */
 var Permission = require('./permissions').Permission;
 var Role = require('./roles').Role;
 var Country = require('./countries').Country;
@@ -22,7 +27,9 @@ var Currency = require('./currencies').Currency;
 
 // TODO: Finalizar el modelo de los usuarios
 // TODO: Implementar validacion por correo electronico para los registros por Sign UP
-// Define basic User schema
+/**
+ * Define 'User' schema.
+ */
 var UserSchema = new Schema({
 	firstName: String,
 	lastName: String,
@@ -92,5 +99,7 @@ UserSchema.methods.verifyPassword = function (password, callback) {
 	});
 };
 
-// Export the Mongoose model
+/**
+ * Expose 'Admin' model.
+ */
 module.exports.User = mongoose.model('User', UserSchema);
