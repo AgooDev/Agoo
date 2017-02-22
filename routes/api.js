@@ -33,20 +33,58 @@ function SetupRouter (router){
     /**
      *  Declare all routes
      */
-    var authRoutes = require('./auth');
-    var cityRoutes = require('./cities');
-    var clientRoutes = require('./clients');
-    var contentTypeRoutes = require('./contentTypes');
-    var countryRoutes = require('./countries');
-    var lessonRoutes = require('./lessons');
-    var courseRoutes = require('./courses');
-    var currencyRoutes = require('./currencies');
-    var oauth2Routes = require('./oauth2');
-    var permissionRoutes = require('./permissions');
-    var programRoutes = require('./programs');
-    var roleRoutes = require('./roles');
-    var stateRoutes = require('./states');
-    var userRoutes = require('./users');
+    var adminRoutes         = require('./admins');
+    var authRoutes          = require('./auth');
+    var cityRoutes          = require('./cities');
+    var clientRoutes        = require('./clients');
+    var contentTypeRoutes   = require('./contentTypes');
+    var countryRoutes       = require('./countries');
+    var lessonRoutes        = require('./lessons');
+    var courseRoutes        = require('./courses');
+    var currencyRoutes      = require('./currencies');
+    var oauth2Routes        = require('./oauth2');
+    var permissionRoutes    = require('./permissions');
+    var programRoutes       = require('./programs');
+    var roleRoutes          = require('./roles');
+    var stateRoutes         = require('./states');
+    var userRoutes          = require('./users');
+
+
+    /**
+     *  Document:  USERS.JS
+     *  Define routes where they are stored endpoints
+     */
+    // ENDPOINT: /admin
+    router.route('/admin')
+        .get(authRoutes.isAdminAuthenticated, adminRoutes.getAdmin)
+        .post(adminRoutes.postAdmin);
+    //.post(authRoutes.isAuthenticated, adminRoutes.postAdmin);
+
+    // ENDPOINT: /admin/:id
+    // ENDPOINT: /admin/count
+    // ENDPOINT: /admin/count?initialDate=yyyy-mm-dd&endDate=yyyy-mm-dd
+    router.route('/admin/:id')
+        .get(authRoutes.isAdminAuthenticated, adminRoutes.getUserById)
+        .put(authRoutes.isAdminAuthenticated, adminRoutes.putUser)
+        .patch(authRoutes.isAdminAuthenticated, adminRoutes.patchUser)
+        .delete(authRoutes.isAdminAuthenticated, adminRoutes.deleteUser);
+
+    // ENDPOINT: /admin/login
+    router.route('/admin/login')
+        .get(authRoutes.isAdminLoginAuthenticated, adminRoutes.getLogin);
+
+    // ENDPOINT: /admin/password/reset
+    router.route('/admin/password/reset')
+        .post(authRoutes.isAdminAuthenticated, adminRoutes.postPasswordReset);
+
+    // ENDPOINT: /admin/password/reset/:code
+    router.route('/admin/password/reset/:code')
+        .patch(authRoutes.isAdminAuthenticated, adminRoutes.PatchPasswordReset);
+
+    /**
+     * ====================================================================
+     */
+
 
     /**
      *  Document:  CITIES.JS

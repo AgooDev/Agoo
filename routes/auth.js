@@ -23,6 +23,7 @@ var ClientDataModel = require('../models/clients');
 var Client = ClientDataModel.Client;
 var TokenDataModel = require('../models/tokens');
 var Token = TokenDataModel.Token;
+var Admin = require('../models/admins').Admin;
 
 passport.use(new BasicStrategy(
     function(email, password, callback) {
@@ -34,24 +35,50 @@ passport.use(new BasicStrategy(
 
             // No user found with that email
             if (!user) {
-                return callback(null, false);
+                Admin.findOne({ email: email }, function (err, admin) {
+                    if (err) {
+                        logger.error(err);
+                        return callback(err);
+                    }
+
+                    // No admin found with that email
+                    if(!admin){
+                        return callback(null, false);
+                    }
+
+                    // Make sure the password is correct
+                    admin.verifyPassword(password, function(err, isMatch) {
+                        if (err) {
+                            logger.error(err);
+                            return callback(err);
+                        }
+
+                        // Password did not match
+                        if (!isMatch) {
+                            return callback(null, false);
+                        }
+
+                        // Success
+                        return callback(null, admin);
+                    });
+                });
+            } else {
+                // Make sure the password is correct
+                user.verifyPassword(password, function(err, isMatch) {
+                    if (err) {
+                        logger.error(err);
+                        return callback(err);
+                    }
+
+                    // Password did not match
+                    if (!isMatch) {
+                        return callback(null, false);
+                    }
+
+                    // Success
+                    return callback(null, user);
+                });
             }
-
-            // Make sure the password is correct
-            user.verifyPassword(password, function(err, isMatch) {
-                if (err) {
-                    logger.error(err);
-                    return callback(err);
-                }
-
-                // Password did not match
-                if (!isMatch) {
-                    return callback(null, false);
-                }
-
-                // Success
-                return callback(null, user);
-            });
         });
     }
 ));
@@ -85,6 +112,72 @@ passport.use('Login-Basic',new BasicStrategy(
 
                 // Success
                 return callback(null, user);
+            });
+        });
+    }
+));
+
+passport.use('Admin-Basic', new BasicStrategy(
+    function(email, password, callback) {
+        Admin.findOne({ email : email }, function (err, admin) {
+            if (err) {
+                logger.error(err);
+                return callback(err);
+            }
+
+            // No user found with that email
+            if (!admin) {
+                return callback(null, false);
+            }
+
+            // Make sure the password is correct
+            admin.verifyPassword(password, function(err, isMatch) {
+                if (err) {
+                    logger.error(err);
+                    return callback(err);
+                }
+
+                // Password did not match
+                if (!isMatch) {
+                    return callback(null, false);
+                }
+
+                // Success
+                return callback(null, admin);
+            });
+        });
+    }
+));
+
+passport.use('Admin-Login-Basic',new BasicStrategy(
+    function(email, password, callback) {
+        Admin.findOne({ email : email }, function (err, admin) {
+            if (err) {
+                logger.error(err);
+                return callback(err);
+            }
+
+            // No user found with that email
+            if (!admin) {
+                return callback(null, false);
+            }
+
+            // Make sure the password is correct
+            admin.verifyPassword(password, function(err, isMatch) {
+                if (err) {
+                    logger.error(err);
+                    return callback(err);
+                }
+
+                // Password did not match
+                if (!isMatch) {
+
+                    return callback(null, false);
+
+                }
+
+                // Success
+                return callback(null, admin);
             });
         });
     }
@@ -142,6 +235,8 @@ passport.use(new BearerStrategy(
 ));
 
 exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], { session : false });
+exports.isAdminAuthenticated = passport.authenticate(['Admin-Basic', 'bearer'], { session : false });
 exports.isLoginAuthenticated = passport.authenticate(['Login-Basic', 'bearer'], { session : false });
+exports.isAdminLoginAuthenticated = passport.authenticate(['Admin-Login-Basic', 'bearer'], { session : false });
 exports.isClientAuthenticated = passport.authenticate('client-basic', { session : false });
 exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });

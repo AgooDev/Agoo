@@ -6,7 +6,9 @@
  * LICENSE file in the root directory of this source tree or translated in the assets folder.
  */
 
-// Load required packages
+/**
+ * Module dependencies.
+ */
 var logger = require('../config/logger').logger;
 var User = require('../models/users').User;
 var UserReset = require('../models/userReset').UserReset;
