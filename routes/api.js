@@ -64,10 +64,10 @@ function SetupRouter (router){
     // ENDPOINT: /admin/count
     // ENDPOINT: /admin/count?initialDate=yyyy-mm-dd&endDate=yyyy-mm-dd
     router.route('/admin/:id')
-        .get(authRoutes.isAdminAuthenticated, adminRoutes.getUserById)
-        .put(authRoutes.isAdminAuthenticated, adminRoutes.putUser)
-        .patch(authRoutes.isAdminAuthenticated, adminRoutes.patchUser)
-        .delete(authRoutes.isAdminAuthenticated, adminRoutes.deleteUser);
+        .get(authRoutes.isAdminAuthenticated, adminRoutes.getAdminById)
+        .put(authRoutes.isAdminAuthenticated, adminRoutes.putAdmin)
+        .patch(authRoutes.isAdminAuthenticated, adminRoutes.patchAdmin)
+        .delete(authRoutes.isAdminAuthenticated, adminRoutes.deleteAdmin);
 
     // ENDPOINT: /admin/login
     router.route('/admin/login')
