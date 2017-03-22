@@ -45,9 +45,9 @@ var UserSchema = new Schema({
 		required: true
 	},
 	country: [Country.schema],
-	state: [State.schema],
 	city: [City.schema],
 	address: String,
+	zip: String,
 	telephone: String,
 	isColombian: Boolean,
 	currency: [Currency.schema],
