@@ -19,7 +19,7 @@ var AdminActivationSchema = new mongoose.Schema({
         type        : String,
         required    : true
     },
-    userId:  {
+    adminId:  {
         type        : mongoose.Schema.Types.ObjectId,
         required    : true
     },
